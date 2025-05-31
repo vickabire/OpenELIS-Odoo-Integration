@@ -37,7 +37,7 @@ services:
             
   oe.openelis.org:
     container_name: openelisglobal-webapp 
-    image: itechuw/openelis-global-2-dev:oebackend
+    image: itechuw/openelis-global-2-dev:develop
     depends_on:
         - database
         - certs
@@ -92,7 +92,7 @@ services:
           - source: hapi_application.yaml 
 
   frontend.openelis.org:
-    image: itechuw/openelis-global-2-frontend-dev:oefrontend
+    image: itechuw/openelis-global-2-frontend-dev:develop
     container_name: openelisglobal-front-end
     networks:
         - hie
@@ -101,8 +101,8 @@ services:
     image: nginx:1.15-alpine
     container_name: openelisglobal-proxy
     ports:
-        - "80:80"
-        - "443:443"
+      - 80:80
+      - 443:443
     volumes:
         - certs-vol:/etc/nginx/certs/
         - keys-vol:/etc/nginx/keys/

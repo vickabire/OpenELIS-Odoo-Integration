@@ -1,0 +1,20 @@
+version: '3.8'
+
+networks:
+  hie:
+    driver: bridge
+
+services:
+  #certbot
+  certbot:
+    image: certbot/certbot:latest
+    container_name: certbot
+    entrypoint: "certbot certonly --standalone -n --agree-tos --email help@cihis.org -d test2.cihis.org"
+    volumes:
+      - certs:/etc/letsencrypt
+    ports:
+      - 80:80
+      - 443:443
+
+volumes:
+  certs: ~
